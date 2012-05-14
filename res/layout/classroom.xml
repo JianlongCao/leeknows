@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/classroomlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/shuimo1"
+    android:paddingBottom="4dip"
+    android:paddingLeft="12dip"
+    android:paddingRight="12dip" >
+
+    
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="12dip"
+        android:text="Support by njust.aliapp.com"
+        android:textSize="13dip" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="5dip"
+        android:paddingBottom="5dip"
+        android:background="@drawable/underline"
+        android:entries="@array/week"
+        android:id="@+id/spin_week" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/spin_week"
+        android:background="@drawable/underline"
+        android:entries="@array/classno"
+        android:paddingBottom="5dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="5dip"
+        android:id="@+id/spin_classno"
+         />
+    
+    <Button
+        android:text="换个时间？"
+        android:textColor="@android:color/black"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/spin_week"
+        android:background="@drawable/button_press"
+        android:paddingBottom="5dip"
+        android:paddingLeft="10dip"
+        android:paddingRight="10dip"
+        android:paddingTop="5dip" 
+        android:layout_alignBottom="@+id/spin_week"
+        android:onClick="onclick"
+        android:id="@+id/btn_changetime"
+        />        
+    <TextView
+        android:id="@+id/classcontent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spin_week"
+        android:shadowColor="@android:color/white"
+        android:shadowDx="0.2"
+        android:shadowDy="0.0"
+        android:shadowRadius="0.2"
+		android:textColor="@android:color/white"
+        android:textSize="15dip"
+        android:background="@drawable/graylist"
+        android:singleLine="false" 
+        android:scrollbars="vertical"  />
+
+</RelativeLayout> 
