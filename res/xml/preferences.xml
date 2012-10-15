@@ -18,13 +18,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
         android:name="Lib Username"
-        android:summary="Username for your lib Account"
+        android:summary="图书馆帐号（学号）"
         android:defaultValue=""
         android:title="@string/Username"
         android:key="Libuser" />
     <EditTextPreference
         android:name="Lib Password"
-        android:summary="Password for your lib Account"
+        android:summary="图书馆密码"
         android:defaultValue=""
         android:title="@string/password"
         android:key="Libpass"
@@ -32,5 +32,15 @@
     <CheckBoxPreference 
         android:title="@string/ShowAvail"
         android:key="Libshowavail"
-        android:summary="Want to show only available"/>
+        android:summary="只在搜索栏中显示可借的书籍"/>
+    <CheckBoxPreference 
+        android:title="@string/NotifyService"
+        android:key="Libnotify"
+        android:defaultValue="true"
+        android:summary="提醒即将到期的书籍"/>
+    <CheckBoxPreference
+        android:title="@string/Classroom"
+        android:key="OpenClassroom"
+        android:defaultValue="false"
+        android:summary="打开自习室功能"/>
 </PreferenceScreen>

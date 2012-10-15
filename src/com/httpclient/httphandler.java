@@ -262,6 +262,8 @@ public class httphandler
         }
 		return null; 
 	}
+	
+	
 	public static int http_parser(String html,ArrayList<HashMap<String, Object>> list)
 	{
 		Document doc = Jsoup.parse(html);
@@ -273,10 +275,19 @@ public class httphandler
 			String strsearch[]=search_num_str.split(" ");
 			Elements book_url = doc.select("#list_books a[href]");
 			Elements book_name = doc.select("#list_books");
-			int length=0,tmp;
-			String test = strsearch[1].substring(4);
-			length=Integer.parseInt(test);
-			tmp=length;
+			int length=0;
+			int tmp=0;
+			for(int i=0;i<strsearch.length;i++)
+			{
+				if(strsearch[i].indexOf("结果数")!=-1){
+					String test = strsearch[i].substring(4);
+					length=Integer.parseInt(test);
+					tmp=length;
+					break;
+				}
+				
+			}
+			if(tmp==0)return tmp;
 			
 			length=book_name.size();
 			

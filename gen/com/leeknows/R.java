@@ -29,8 +29,8 @@ public final class R {
         public static final int underline=0x7f02000b;
     }
     public static final class id {
+        public static final int BClassroom=0x7f07001d;
         public static final int B_confirm=0x7f070014;
-        public static final int Classroom=0x7f07001d;
         public static final int E_input=0x7f070013;
         public static final int Itembigtitle=0x7f070007;
         public static final int Itemsmalltitle=0x7f070008;
@@ -82,6 +82,7 @@ public final class R {
         public static final int Btn_Search=0x7f060003;
         public static final int Classroom=0x7f060016;
         public static final int Mylib=0x7f060012;
+        public static final int NotifyService=0x7f060017;
         public static final int Plsinput=0x7f060002;
         public static final int Progress_big_title=0x7f060008;
         public static final int Progress_small_title=0x7f060009;

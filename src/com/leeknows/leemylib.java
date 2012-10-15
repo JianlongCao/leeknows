@@ -15,11 +15,14 @@ import com.httpclient.httphandler;
 import com.leemodels.bookfunc;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Intent;
 
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
@@ -34,12 +37,21 @@ import android.widget.SimpleAdapter;
 
 public class leemylib extends Activity{
 
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		nm.cancel(R.string.app_name);
+		Log.d("test","it is cancel");
+		super.onDestroy();
+	}
+
 	public bookfunc b_func;
 	
 	public 	ListView list;
 	public ArrayList<HashMap<String, Object>> listItem=null ;
 	public ArrayList<HashMap<String, Object>> listItemtmp=null ;
 	public SimpleAdapter listItemAdapter=null;
+	private NotificationManager nm;
 	
 	public 	ListView list2;
 	public ArrayList<HashMap<String, Object>> listItem2=null ;
@@ -86,7 +98,7 @@ public class leemylib extends Activity{
                 
             }
         });
-         
+        nm=(NotificationManager)getSystemService(NOTIFICATION_SERVICE);
 	}
 	
 	@Override  
@@ -124,6 +136,7 @@ public class leemylib extends Activity{
         		mylib_refresh();
         		mylib_refresh2();
     		}
+        	b_func.toastinfo(getBaseContext(), "长按书籍可以续借");
             Message msg2 = new Message();
     		msg2.what = leelocation.PROGRESSBAR;
     		leemylib.this.mHandler.sendMessage(msg2);
@@ -147,7 +160,7 @@ public class leemylib extends Activity{
          	String result = httphandler.http_post_session(params,url_api,b_func.getsessionid());
          	Document doc = Jsoup.parse(result);
          	
-         	b_func.toastinfo(getBaseContext(), doc.text());
+         	b_func.toastinfo(getBaseContext(), "完成："+doc.text());
          	
             Message msg2 = new Message();
     		msg2.what = leelocation.PROGRESSBAR;

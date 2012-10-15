@@ -29,6 +29,7 @@ public class leeclassroom extends Activity{
 	private String[] classno = {"0","9","11","15","17","19"};
 	private String classcontent="";
 	private boolean searchflag=false;
+	private boolean serviceon=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -36,6 +37,7 @@ public class leeclassroom extends Activity{
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.classroom);
 		//setProgressBarIndeterminateVisibility(false);
+		serviceon=true;
 		new Thread(new MyThread()).start();
 		text_class = (TextView)findViewById(R.id.classcontent);
 		spin_week = (Spinner)findViewById(R.id.spin_week);
@@ -61,14 +63,14 @@ public class leeclassroom extends Activity{
   	  
         @Override  
         public void run() {  
-        	while(true){
+        	while(serviceon){
         		if(Params!=Params_old)
         		{
         			runOnUiThread(new Runnable() {
         				public void run() {
         			setProgressBarIndeterminateVisibility(true);
         				}});
-        			if(((int)spin_classno.getSelectedItemId()==0)&&(searchflag==true))
+        			if(((searchflag==true)&&(int)spin_classno.getSelectedItemId()==0))
         			{
         				for(int i=1;i<6;i++)
         				Updateclassroom("wday="+(int)(spin_week.getSelectedItemId()+1)+
@@ -92,12 +94,16 @@ public class leeclassroom extends Activity{
     public void Updateclassroom(String params){
 			String html = httphandler.httpget(url, params);
 	  			 //parse html
-			html = html.substring(html.indexOf(beginIndex)+6);
-			html = html.substring(html.indexOf(beginIndex)+6);
-			html = html.substring(0, html.indexOf(endIndex));
-			html=html.replaceAll("<hr","'\n");
-			html=html.replaceAll("<br"," ");
-			html=html.replaceAll("/>","");
+			if(html.indexOf("temporarily unavailable")!=-1)
+			html="网站暂时无法访问";
+			else{
+				html = html.substring(html.indexOf(beginIndex)+6);
+				html = html.substring(html.indexOf(beginIndex)+6);
+				html = html.substring(0, html.indexOf(endIndex));
+				html=html.replaceAll("<hr","'\n");
+				html=html.replaceAll("<br"," ");
+				html=html.replaceAll("/>","");
+			}
 			Log.d("leeclassroom", html);
 			if((int)spin_classno.getSelectedItemId()==0) //all
 				classcontent+=html;
@@ -109,6 +115,14 @@ public class leeclassroom extends Activity{
 			
 		});
     }
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		serviceon=false;
+		
+	}
           
 	
 }

@@ -110,13 +110,14 @@
         android:background="@drawable/button_press"
         android:onClick="onclick_mylib" />
     <Button
-        android:id="@+id/Classroom"
+        android:id="@+id/BClassroom"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/Mylibrary"
         android:text="@string/Classroom"
         android:textSize="15dip"
         android:focusable="true"
+        android:visibility="invisible"
         android:background="@drawable/button_press"
         android:onClick="onclick_classroom" />
 

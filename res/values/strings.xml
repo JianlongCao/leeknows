@@ -15,7 +15,7 @@
     <string name="store_name">我的收藏夹</string>
     <string name="local_findmore">点击查看图书介绍</string>
     <string name="aboutautor">关于理知道</string>
-    <string name="abouttext">理知道版本v1.2 感谢静静的测试\n更新内容：\n界面更新,修复几个bug,增加自习室查询(感谢娄萌萌等同学)\n更新时间：5/12/2012\n作者：曹建龙 邮箱:peter880313@gmail.com\n备注：理知道是一个开源的项目，欢迎大家提供BUG，希望大家能够帮助一起成长</string>
+    <string name="abouttext">理知道版本v1.15\n功能介绍：\n搜索图书，多关键字加空格\n长按书名可收藏\n查看书籍借阅情况，预约\n自习室可以在设置栏打开\n作者：曹建龙 朱静静 \n关注我的新浪微博：小脸龙\n邮箱:peter880313@gmail.com\n备注：理知道是一个开源的项目，欢迎大家提供BUG，希望大家能够帮助一起成长</string>
     <string name="Username">图书馆账户名</string>
     <string name="password">图书馆账户密码</string>
     <string name="ShowAvail">只显示可借书目</string>
@@ -24,5 +24,6 @@
     <string name="mylib_reserve">已预约书籍</string>
     <string name="preq_text">图书预约</string>
     <string name="Classroom">自习室查询</string>
+    <string name="NotifyService">到期通知小助手</string>
 
 </resources>

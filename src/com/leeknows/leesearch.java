@@ -4,7 +4,9 @@ import com.leemodels.bookfunc;
 import com.leemodels.bookinfo;
 
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,11 +16,13 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -27,6 +31,7 @@ import android.widget.TextView;
 public class leesearch extends Activity {
     /** Called when the activity is first created. */
 	public EditText E_input;
+	public Button btn_classroom;
 	public RadioGroup radiogroup;
 	public RadioButton radio0,radio1,radio2;
 	public TextView abouttext ;
@@ -43,6 +48,10 @@ public class leesearch extends Activity {
         setTitle("南京理工大学图书查询系统");
         setContentView(R.layout.main);
         initialize();
+    	SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    	boolean openclass = prefs.getBoolean("OpenClassroom", false);
+    	if(openclass) btn_classroom.setVisibility(View.VISIBLE);
+    	
         radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {  
             
             @Override  
@@ -59,12 +68,13 @@ public class leesearch extends Activity {
 	}
     public void initialize()
     {
+    	btn_classroom=(Button)findViewById(R.id.BClassroom);
     	radiogroup =(RadioGroup)findViewById(R.id.radioGroup1);
     	radio0 = (RadioButton)findViewById(R.id.radio0);
     	radio1 = (RadioButton)findViewById(R.id.radio1);
     	radio2 = (RadioButton)findViewById(R.id.radio2); 
     	abouttext = (TextView)findViewById(R.id.abouttext);
-    	
+    	b_func = new bookfunc();
     }
     public void onclick_confirm(View v)
     {
@@ -119,6 +129,7 @@ public class leesearch extends Activity {
         
         String username = prefs.getString("Libuser", "");
         String password = prefs.getString("Libpass", "");
+        Boolean notify_service = prefs.getBoolean("Libnotify", true);
         if (username.length() == 0 ||password.length() == 0) {
         	Intent intent  = new Intent(leesearch.this,leesetting.class);
         	startActivity(intent);
